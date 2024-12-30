@@ -55,17 +55,12 @@ online-fundraiser/
 ├── .env             # Environment variables  
 └── package.json     # Project metadata and dependencies  
 
-Team
-This project was created by:
-
-Rounak Mishra
+Projext Created By:
+Rounak Mishra and Team
 We collaborated to design, develop, and implement this platform, ensuring a seamless user experience and robust functionality.
 
 Contribution
 Contributions are welcome! Feel free to submit issues or pull requests to improve the project.
-
-License
-This project is licensed under the MIT License. See the LICENSE file for more details.
 
 Contact
 For questions or collaboration, contact us at:
