@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Steps</title>
+    <style>
+      body {
+        margin-left: 30px;
+      }
+      li:nth-child(even) {background: rgb(244, 201, 201)}
+    li:nth-child(odd) {background: rgb(98, 242, 130)}
+    li{
+      padding: 10px;
+    }
+      </style>
+  </head>
+  <body>
+    <h1> Steps :</h1>
+    <ol>
+      <li>npx create-next-app@latest</li>
+      <li>npm install ganache-cli mocha solc fs-extra web3</li>
+      <li>create folder for ethereum</li>
+      <li>create compile.js and deploy.js in ethereum</li>
+      <li>create contracts folder and create contractName.sol</li>
+      <li>copy code from remix to sol file</li>
+      <li>
+        update compile.js, here build contract will be build to keep compiled
+        files
+      </li>
+      <li>
+        In compile.js update contract name
+        -->https://codeforgeek.com/compile-using-solc-in-solidity/#the-old-compile-script
+      </li>
+      <li>compile using: node compile.js</li>
+      <li>create test in test folder</li>
+      <li>update test script in package.json --> run it npm run test</li>
+      <li>
+        start working on deployment script
+
+        <ul>
+          <li>
+            - install truffle hdwallerprovider vid 60,update mnemonic from
+            metamask
+          </li>
+          <li>- set infura link for ropsten</li>
+          <li>- node deploy.js</li>
+          <li>- save address : 0x8A498AE8A70EB4206d4cce38EF2ccA9324290ca7</li>
+        </ul>
+      </li>
+      <li>update web3.js in ethereum</li>
+      <li>update factory.js in ethereum-->also remove json</li>
+      <li>
+        you can test your deployed contract using remix as well-->copy
+        contract code and then use At address"
+      </li>
+      <li>
+        install semantic ui-->npm install semantic-ui-react semantic-ui-css
+      </li>
+      <li>create static pages first</li>
+      <li>add server file</li>
+      
+      <li>For environment variables:</li>
+      <li>ext install mikestead.dotenv</li>
+      <li>npm install dotenv --not necessary with next</li>
+      <li>check temp.js</li>
+    </ol>
+
+    <h2> How to follow files</h2>
+    <ol>
+      <li>
+        # first is compile.js here we have to update the contract file as
+        well as output that we need in build ---> compile it --> node compile.js
+        see video 145 and 146
+      </li>
+      <li># create your test file and update package.json to mocha</li>
+      <li># test file --> npm run test</li>
+      <li>
+        # change deploy.js to change mnemonic and network check video 157 and in web3 change web3 provider
+      </li>
+      <li># web3 is only for provider, either from metamask or infura or local ganache</li>
+      <li>
+        # For easiness use factory.js and campaign.js (if you want to change name of
+        contract). This is added just to directly use deployed contracts (check
+        164-168 video), web3 provider requires interface of the contracts thats
+        why we are using these, Now we can easily use these contracts
+      </li>
+      <li># set Next.js (npm run dev)</li>
+      
+    </ol>
+
+    <h3>#THINGS TO LEARN</h3>
+    <ul>
+      <li>
+        # getInitialProps enables server-side rendering in a page and allows you
+        to do initial data population, it means sending the page with the data
+        already populated from the server. This is especially useful for SEO.
+      </li>
+
+      <li>
+        #semantic ui react https://react.semantic-ui.com/views/advertisement/
+      </li>
+
+      <li>
+        # check components folder # ##index is calling Layout is calling Header,
+        updaate header for navigation bar
+      </li>
+    </ul>
+
+    <h2>#METHODS:</h2>
+      <h3>#1) Retrieve data import factory from "../ethereum/factory";</h3>
+      <h4>check getInitialProps in index.js use it in rendering: </h4>
+      <pre>
+      <code> 
+        const campaigns = await factory.methods.getDeployedCampaigns().call();
+        const items = this.props.campaigns 
+        const campaign = Campaign(props.query.address);
+        const summary = await campaign.methods.getSummary().call();
+        return { 
+          address:props.query.address,
+          minimumContribution: summary[0], balance: summary[1],
+          requestsCount: summary[2], approversCount: summary[3],
+          manager: summary[4], 
+        }; 
+        #check page 26 of docs, we are calling again and again as solidity cant return #array of structs <br>
+        const requests = await Promise.all(Array(parseInt(requestCount)).fill()#return arrays with indexes
+        .map((element, index) => { 
+          return campaign.methods.requests(index).call();
+        }));
+      </code>
+    </pre>
+    
+    <p>
+      <h3>#2) Add data, check new.js </h3><br>
+    <code>
+      onSubmit = async (event) => {<br>
+      event.preventDefault(); <br>
+      this.setState({ loading: true, errorMessage: ""}); <br>
+      try { <br>
+        const accounts = await web3.eth.getAccounts();<br>
+        await factory.methods .createCampaign(this.state.minimumContribution) .send({<br>
+        from: accounts[0], }); <br>
+        Router.push("/"); <br>
+      } catch (err) { <br>
+        this.setState({errorMessage: err.message <br>
+        });<br>
+      } <br>
+      this.setState({ loading: false }); <br>
+    };<br>
+  </code>
+    </br>
+    <p>
+    <h3># 3) take input from semantic ui </h3>
+    
+        <Input label="wei" labelPosition="right"
+      value={this.state.minimumContribution} onChange={(event) =>
+      this.setState({ minimumContribution: event.target.value }) }
+    
+    </p>
+
+    <h4>#row and Column can be set using grid and column</h4>
+
+    <h3>#FROM LOCAL TO INFURA</h3>
+    <p>
+      1) Change web3 provider <br>
+      2) Change deploy.js as well for infura and mnemonic, 
+    </p>
+
+    <h3>####OLD ADDRESS OF INFURA####</h3>
+
+    <h4>0x05585c30d7c7BD54358eAfd1042Dd319922f7033</h4>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "boiletplate",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "mocha"
+  },
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.0.1",
+    "dotenv": "^16.0.0",
+    "fs-extra": "^10.0.0",
+    "ganache-cli": "^6.12.2",
+    "mocha": "^9.2.0",
+    "next": "12.0.10",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.1.1",
+    "solc": "^0.8.11",
+    "web3": "^1.7.0"
+  },
+  "devDependencies": {
+    "eslint": "8.9.0",
+    "eslint-config-next": "12.0.10"
+  }
+}
