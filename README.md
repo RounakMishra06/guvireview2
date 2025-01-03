@@ -33,8 +33,8 @@ Create a .env file in the root directory and configure the following:
 plaintext
 Copy code
 PORT=5000  
-MONGO_URI=<Your MongoDB Connection String>  
-PAYMENT_API_KEY=<Your Payment Gateway API Key>  
+MONGO_URI<Your MongoDB Connection String>  
+PAYMENT_API_KEY<Your Payment Gateway API Key>  
 Start the server:
 bash
 Copy code
